@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "diagnoserestservice",
+      "composeLaunchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "serviceActions": {
+        "DBAdapterService": "StartDebugging",
+        "diagnoserestservice": "StartDebugging",
+        "pgadmin": "StartWithoutDebugging",
+        "redis": "StartWithoutDebugging",
+        "postgres": "StartWithoutDebugging",
+        "rabbitmq": "StartWithoutDebugging",
+        "rabbitmqtohttploadbalancingservice": "StartDebugging",
+        "AuthService": "StartDebugging",
+        "UsersDBAdapter": "StartDebugging"
+      }
+    }
+  }
+}

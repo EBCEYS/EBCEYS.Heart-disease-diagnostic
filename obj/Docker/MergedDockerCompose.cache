@@ -1,0 +1,287 @@
+name: dockercompose6318684481998163191
+services:
+  alertstorageservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: AlertStorageService/Dockerfile
+    container_name: alertstorageservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    image: alertstorageservice
+    networks:
+      default: null
+  authservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: AuthService/Dockerfile
+    container_name: authservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - curl --fail http://localhost:5000/isAlive || exit 1
+      timeout: 10s
+      interval: 5s
+      retries: 3
+    image: authservice
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 5000
+      published: "5000"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  dbadapterservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: DBAdapterService/Dockerfile
+    container_name: dbadapterservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      DOTNET_ENVIRONMENT: Development
+    image: dbadapterservice
+    networks:
+      default: null
+    volumes:
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  definedataservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: DefineDataService/Dockerfile
+    container_name: definedataservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    image: definedataservice
+    networks:
+      default: null
+  diagnosecardiovascularservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: DiagnoseCardiovascularService/Dockerfile
+    container_name: diagnosecardiovascularservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    image: diagnosecardiovascularservice
+    networks:
+      default: null
+  diagnosereceiver:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: DiagnoseReceiver/Dockerfile
+    container_name: diagnosereceiver
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    image: diagnosereceiver
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 1000
+      published: "1000"
+      protocol: tcp
+  diagnoserestservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: DiagnoseRESTService/Dockerfile
+    container_name: diagnoserestservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: diagnoserestservice
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      protocol: tcp
+    - mode: ingress
+      target: 80
+      published: "80"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  jwtcachecheker:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: JwtCacheChecker/Dockerfile
+    container_name: jwt_cache_checker
+    depends_on:
+      rabbitmq:
+        condition: service_started
+      redis:
+        condition: service_started
+    image: jwtcachechecker
+    networks:
+      default: null
+  pgadmin:
+    container_name: DB_PGAdmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+      PGADMIN_LISTEN_PORT: "80"
+    image: dpage/pgadmin4:6.14
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "8080"
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: volume
+      source: pgadmin-data
+      target: /var/lib/pgadmin
+      volume: {}
+  postgres:
+    container_name: DB_PostgreSQL
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "4294967296"
+    environment:
+      POSTGRES_DB: DiagnoseResultsDB
+      POSTGRES_PASSWORD: adm
+      POSTGRES_USER: adm
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - pg_isready -U adm -d DiagnoseResultsDB
+      timeout: 5s
+      interval: 10s
+      retries: 5
+      start_period: 10s
+    image: postgres:13.3
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5432
+      published: "5432"
+      protocol: tcp
+    restart: unless-stopped
+    volumes:
+    - type: bind
+      source: F:\Project\HDDSystem
+      target: /docker-entrypoint-initdb.d
+      bind:
+        create_host_path: true
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8-management-alpine
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5672
+      published: "5673"
+      protocol: tcp
+    - mode: ingress
+      target: 15672
+      published: "15673"
+      protocol: tcp
+  rabbitmqtohttploadbalancingservice:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: RabbitMQToHTTPLoadBalancingService/Dockerfile
+    container_name: rabbitmqtohttploadbalancingservice
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      DOTNET_ENVIRONMENT: Development
+    image: rabbitmqtohttploadbalancingservice
+    networks:
+      default: null
+    volumes:
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  redis:
+    container_name: redis
+    environment:
+      REDIS_REPLICATION_MODE: master
+    image: redis/redis-stack:latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 6379
+      published: "6379"
+      protocol: tcp
+    - mode: ingress
+      target: 8001
+      published: "8001"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: F:\Project\HDDSystem\redis.conf
+      target: /tmp/redis.conf
+      bind:
+        create_host_path: true
+  usersdbadapter:
+    build:
+      context: F:\Project\HDDSystem
+      dockerfile: UsersDBAdapter/Dockerfile
+    container_name: usersdbadapter
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      DOTNET_ENVIRONMENT: Development
+    image: usersdbadapter
+    networks:
+      default: null
+    volumes:
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  default:
+    name: dockercompose6318684481998163191_default
+volumes:
+  pgadmin-data:
+    name: dockercompose6318684481998163191_pgadmin-data

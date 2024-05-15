@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    "HeartDiseasesDiagnosticExtentions.csproj",
+    "DataBaseObjects.csproj",
+    "JWTExtensions.csproj",
+    "UsersCache.csproj"
+  ]
+}

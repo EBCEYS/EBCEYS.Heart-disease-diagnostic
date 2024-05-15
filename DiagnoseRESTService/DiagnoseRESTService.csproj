@@ -1,0 +1,125 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+	<TieredCompilationQuickJit>true</TieredCompilationQuickJit>
+	<ServerGarbageCollection>false</ServerGarbageCollection>
+	<RetainVMGarbageCollection>true</RetainVMGarbageCollection>
+	<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	<ApplicationIcon />
+	<OutputType>Exe</OutputType>
+	<StartupObject></StartupObject>
+	<PlatformTarget>AnyCPU</PlatformTarget>
+	<DebugType>portable</DebugType>
+	<SignAssembly>False</SignAssembly>
+	<Version>0.7.0</Version>
+	<Description>WEB API to diagnose heart diseases.</Description>
+	<Authors>Kuznetsov Alexey, Konkov Vladislav</Authors>
+	<Company>Kuznetsov Alexey, Konkov Vladislav</Company>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerfileContext>.</DockerfileContext>
+	<DockerComposeProjectPath>docker-compose.dcproj</DockerComposeProjectPath>
+	<Nullable>annotations</Nullable>
+	<UserSecretsId>d4ddb94c-36a3-4465-a130-b632d281a09d</UserSecretsId>
+	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<NoWarn>$(NoWarn);1591</NoWarn>
+    <DocumentationFile></DocumentationFile>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <WarningLevel>0</WarningLevel>
+    <GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+	<DocumentationFile>F:\Project\GitHub\Get_Requests_From_Client_For_Project_Test\Get_Requests_From_Client_For_Project_Test.xml</DocumentationFile>
+	<WarningLevel>0</WarningLevel>
+	<GenerateSerializationAssemblies>off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AuthServiceTests\**" />
+    <Compile Remove="AuthService\**" />
+    <Compile Remove="DBAdapterService\**" />
+    <Compile Remove="HolterAnalyzeRest\**" />
+    <Compile Remove="NewDataSetWriteApi\**" />
+    <Compile Remove="Properties\HeartDiseasesDiagnosticExtentions\**" />
+    <Compile Remove="RabbitMQToHTTPLoadBalancingService\**" />
+    <Compile Remove="UsersDBAdapter\**" />
+    <Content Remove="AuthServiceTests\**" />
+    <Content Remove="AuthService\**" />
+    <Content Remove="DBAdapterService\**" />
+    <Content Remove="HolterAnalyzeRest\**" />
+    <Content Remove="NewDataSetWriteApi\**" />
+    <Content Remove="Properties\HeartDiseasesDiagnosticExtentions\**" />
+    <Content Remove="RabbitMQToHTTPLoadBalancingService\**" />
+    <Content Remove="UsersDBAdapter\**" />
+    <EmbeddedResource Remove="AuthServiceTests\**" />
+    <EmbeddedResource Remove="AuthService\**" />
+    <EmbeddedResource Remove="DBAdapterService\**" />
+    <EmbeddedResource Remove="HolterAnalyzeRest\**" />
+    <EmbeddedResource Remove="NewDataSetWriteApi\**" />
+    <EmbeddedResource Remove="Properties\HeartDiseasesDiagnosticExtentions\**" />
+    <EmbeddedResource Remove="RabbitMQToHTTPLoadBalancingService\**" />
+    <EmbeddedResource Remove="UsersDBAdapter\**" />
+    <None Remove="AuthServiceTests\**" />
+    <None Remove="AuthService\**" />
+    <None Remove="DBAdapterService\**" />
+    <None Remove="HolterAnalyzeRest\**" />
+    <None Remove="NewDataSetWriteApi\**" />
+    <None Remove="Properties\HeartDiseasesDiagnosticExtentions\**" />
+    <None Remove="RabbitMQToHTTPLoadBalancingService\**" />
+    <None Remove="UsersDBAdapter\**" />
+    <_WebToolingArtifacts Remove="Properties\HeartDiseasesDiagnosticExtentions\**" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="secret.key">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EBCEYS.RabbitMQ.Server.MappedService" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="NLog" Version="5.2.0" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiagnoseDataObjects\DiagnoseDataObjects.csproj" />
+    <ProjectReference Include="..\JWTExtensions\JWTExtensions.csproj" />
+    <ProjectReference Include="..\UsersCache\CacheAdapters.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+  	<Content Update="nlog.config">
+  		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  	</Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="secret.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+	
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

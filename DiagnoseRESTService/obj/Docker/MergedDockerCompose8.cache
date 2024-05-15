@@ -1,0 +1,405 @@
+name: dockercompose6610616789095590393
+services:
+  AuthService:
+    build:
+      context: F:\Project\GitHub
+      dockerfile: AuthService/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: AuthService
+      target: base
+    container_name: AuthService
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      NUGET_FALLBACK_PACKAGES: ""
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - curl --fail http://localhost:5000/isAlive || exit 1
+      timeout: 10s
+      interval: 5s
+      retries: 3
+    image: authservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  ""'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5000
+      published: "5000"
+      protocol: tcp
+    tty: true
+    volumes:
+    - type: bind
+      source: F:\Project\GitHub\AuthService
+      target: /app
+      bind:
+        create_host_path: true
+    - type: bind
+      source: F:\Project\GitHub
+      target: /src
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\vsdbg\vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\.nuget\packages\
+      target: /root/.nuget/packages
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  DBAdapterService:
+    build:
+      context: F:\Project\GitHub
+      dockerfile: DBAdapterService/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: DBAdapterService
+      target: base
+    container_name: DataBase_adapter_service
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      NUGET_FALLBACK_PACKAGES: ""
+    image: dbadapterservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  ""'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    tty: true
+    volumes:
+    - type: bind
+      source: F:\Project\GitHub\DBAdapterService
+      target: /app
+      bind:
+        create_host_path: true
+    - type: bind
+      source: F:\Project\GitHub
+      target: /src
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\vsdbg\vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\.nuget\packages\
+      target: /root/.nuget/packages
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  UsersDBAdapter:
+    build:
+      context: F:\Project\GitHub
+      dockerfile: UsersDBAdapter/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: UsersDBAdapter
+      target: base
+    container_name: UsersDBAdapter
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      NUGET_FALLBACK_PACKAGES: ""
+    image: usersdbadapter:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  ""'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    tty: true
+    volumes:
+    - type: bind
+      source: F:\Project\GitHub\UsersDBAdapter
+      target: /app
+      bind:
+        create_host_path: true
+    - type: bind
+      source: F:\Project\GitHub
+      target: /src
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\vsdbg\vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\.nuget\packages\
+      target: /root/.nuget/packages
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  diagnoserestservice:
+    build:
+      context: F:\Project\GitHub
+      dockerfile: Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: DiagnoseRESTService
+      target: base
+    container_name: restserver
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      NUGET_FALLBACK_PACKAGES: ""
+    image: diagnoserestservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  ""'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "80"
+      protocol: tcp
+    tty: true
+    volumes:
+    - type: bind
+      source: F:\Project\GitHub
+      target: /app
+      bind:
+        create_host_path: true
+    - type: bind
+      source: F:\Project\GitHub
+      target: /src
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\vsdbg\vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\.nuget\packages\
+      target: /root/.nuget/packages
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/ASP.NET/Https
+      target: /root/.aspnet/https
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  pgadmin:
+    container_name: DB_PGAdmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+      PGADMIN_LISTEN_PORT: "80"
+    image: dpage/pgadmin4:6.14
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "8080"
+      protocol: tcp
+    restart: always
+    volumes:
+    - type: volume
+      source: pgadmin-data
+      target: /var/lib/pgadmin
+      volume: {}
+  postgres:
+    container_name: DB_PostgreSQL
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: "4294967296"
+    environment:
+      POSTGRES_DB: DiagnoseResultsDB
+      POSTGRES_PASSWORD: adm
+      POSTGRES_USER: adm
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - pg_isready -U adm -d DiagnoseResultsDB
+      timeout: 5s
+      interval: 10s
+      retries: 5
+      start_period: 10s
+    image: postgres:13.3
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5432
+      published: "5432"
+      protocol: tcp
+    restart: unless-stopped
+    volumes:
+    - type: bind
+      source: F:\Project\GitHub
+      target: /docker-entrypoint-initdb.d
+      bind:
+        create_host_path: true
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8-management-alpine
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 5672
+      published: "5673"
+      protocol: tcp
+    - mode: ingress
+      target: 15672
+      published: "15673"
+      protocol: tcp
+  rabbitmqtohttploadbalancingservice:
+    build:
+      context: F:\Project\GitHub
+      dockerfile: RabbitMQToHTTPLoadBalancingService/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: RabbitMQToHTTPLoadBalancingService
+      target: base
+    container_name: RabbitMQ_to_HTTP_loadBalancer
+    entrypoint:
+    - tail
+    - -f
+    - /dev/null
+    environment:
+      NUGET_FALLBACK_PACKAGES: ""
+    image: rabbitmqtohttploadbalancingservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages  ""'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    networks:
+      default: null
+    tty: true
+    volumes:
+    - type: bind
+      source: F:\Project\GitHub\RabbitMQToHTTPLoadBalancingService
+      target: /app
+      bind:
+        create_host_path: true
+    - type: bind
+      source: F:\Project\GitHub
+      target: /src
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\vsdbg\vs2017u5
+      target: /remote_debugger
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\.nuget\packages\
+      target: /root/.nuget/packages
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: C:\Users\Алексей\AppData\Roaming/Microsoft/UserSecrets
+      target: /root/.microsoft/usersecrets
+      read_only: true
+      bind:
+        create_host_path: true
+  redis:
+    command:
+    - redis-server
+    - --requirepass
+    - P@$$w0rd!
+    container_name: redis
+    expose:
+    - "6379"
+    image: redis:latest
+    networks:
+      node_net:
+        ipv4_address: 172.28.1.4
+    volumes:
+    - type: volume
+      source: redis-data
+      target: /data
+      volume: {}
+    - type: volume
+      source: redis-conf
+      target: /usr/local/etc/redis/redis.conf
+      volume: {}
+networks:
+  default:
+    name: dockercompose6610616789095590393_default
+  node_net:
+    name: dockercompose6610616789095590393_node_net
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.28.0.0/16
+volumes:
+  pgadmin-data:
+    name: dockercompose6610616789095590393_pgadmin-data
+  redis-conf:
+    name: dockercompose6610616789095590393_redis-conf
+  redis-data:
+    name: dockercompose6610616789095590393_redis-data

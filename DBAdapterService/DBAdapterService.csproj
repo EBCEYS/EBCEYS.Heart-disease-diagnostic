@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <UserSecretsId>dotnet-DBAdapterService-2C086A34-3AAB-4096-A652-FC8A970AAE78</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EBCEYS.RabbitMQ.Server.MappedService" Version="1.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+	<PackageReference Include="NLog" Version="5.2.0" />
+	<PackageReference Include="NLog.Extensions.Logging" Version="5.3.0" />
+	<PackageReference Include="NLog.Web.AspNetCore" Version="5.3.0" />
+	<PackageReference Include="Npgsql" Version="7.0.4" />
+	<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+	<PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataBaseObjects\DataBaseObjects.csproj" />
+    <ProjectReference Include="..\DiagnoseDataObjects\DiagnoseDataObjects.csproj" />
+    <ProjectReference Include="..\HeartDiseasesDiagnosticExtentions\HeartDiseasesDiagnosticExtentions.csproj" />
+  </ItemGroup>
+</Project>

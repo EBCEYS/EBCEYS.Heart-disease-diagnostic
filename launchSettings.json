@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "diagnoserestservice": "StartDebugging",
+        "authservice": "StartDebugging",
+        "rabbitmqtohttploadbalancingservice": "StartDebugging",
+        "usersdbadapter": "StartDebugging",
+        "dbadapterservice": "StartDebugging"
+      }
+    }
+  }
+}

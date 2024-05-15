@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DiagnoseReceiver</name>
+    </assembly>
+    <members>
+        <member name="T:DiagnoseReceiver.Controllers.DiagnoseReceiverController">
+            <summary>
+            Diagnose receiver controller.
+            </summary>
+        </member>
+        <member name="M:DiagnoseReceiver.Controllers.DiagnoseReceiverController.#ctor(Microsoft.Extensions.Logging.ILogger{DiagnoseReceiver.Controllers.DiagnoseReceiverController},EBCEYS.RabbitMQ.Client.RabbitMQClient)">
+            <summary>
+            Initiates the new instance of the diagnose receiver controller.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="client">The rabbitMQ client.</param>
+        </member>
+        <member name="M:DiagnoseReceiver.Controllers.DiagnoseReceiverController.Post(DiagnoseDataObjects.InputWetData)">
+            <summary>
+            Posts the data to diagnose.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DiagnoseReceiver.Program">
+            <summary>
+            The program.
+            </summary>
+        </member>
+        <member name="P:DiagnoseReceiver.Program.BasePath">
+            <summary>
+            Gets service base path.
+            </summary>
+        </member>
+        <member name="P:DiagnoseReceiver.Program.SecretKey">
+            <summary>
+            The secret key.
+            </summary>
+        </member>
+        <member name="P:DiagnoseReceiver.Program.CacheAdapter">
+            <summary>
+            The cache adapter.
+            </summary>
+        </member>
+        <member name="M:DiagnoseReceiver.Program.Main(System.String[])">
+            <summary>
+            The main.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:DiagnoseReceiver.Startup">
+            <summary>
+            The startup.
+            </summary>
+        </member>
+        <member name="M:DiagnoseReceiver.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:DiagnoseReceiver.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DiagnoseReceiver.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configurates the services.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:DiagnoseReceiver.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configurates app.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

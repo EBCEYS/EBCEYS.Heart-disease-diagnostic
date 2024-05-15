@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XegdNvrxSZhtvsacJw1PAkYMSZA4UJ9HTkSZ+qCvcck=",
+  "Source": "DiagnoseReceiver",
+  "BasePath": "_content/DiagnoseReceiver",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

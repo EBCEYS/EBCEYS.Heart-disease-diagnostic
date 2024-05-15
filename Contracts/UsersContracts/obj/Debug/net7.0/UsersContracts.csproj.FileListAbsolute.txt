@@ -1,0 +1,12 @@
+F:\Project\HDDSystem\Contracts\UsersContracts\bin\Debug\net7.0\UsersContracts.deps.json
+F:\Project\HDDSystem\Contracts\UsersContracts\bin\Debug\net7.0\UsersContracts.dll
+F:\Project\HDDSystem\Contracts\UsersContracts\bin\Debug\net7.0\UsersContracts.pdb
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.csproj.AssemblyReference.cache
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.GeneratedMSBuildEditorConfig.editorconfig
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.AssemblyInfoInputs.cache
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.AssemblyInfo.cs
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.csproj.CoreCompileInputs.cache
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.dll
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\refint\UsersContracts.dll
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\UsersContracts.pdb
+F:\Project\HDDSystem\Contracts\UsersContracts\obj\Debug\net7.0\ref\UsersContracts.dll

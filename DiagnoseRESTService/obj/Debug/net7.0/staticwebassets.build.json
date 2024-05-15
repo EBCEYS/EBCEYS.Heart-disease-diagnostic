@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "RDyeafbhjdccEkFmUUeTJU9iErffXBEYRQ2uF1jiOGc=",
+  "Source": "DiagnoseRESTService",
+  "BasePath": "_content/DiagnoseRESTService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

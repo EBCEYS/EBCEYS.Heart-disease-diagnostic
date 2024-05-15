@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HolterAnalyzeRest</name>
+    </assembly>
+    <members>
+        <member name="T:HolterAnalyzeRest.Controllers.HolterController">
+            <summary>
+            The holter analyze controller.
+            </summary>
+        </member>
+        <member name="M:HolterAnalyzeRest.Controllers.HolterController.#ctor(NLog.Logger,Microsoft.Extensions.Configuration.IConfiguration,HolterAnalyzeRest.Server.DataServer)">
+            <summary>
+            Creates the new holter analyze controller.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="config">The configuration.</param>
+            <param name="dataServer">The data server.</param>
+        </member>
+        <member name="M:HolterAnalyzeRest.Controllers.HolterController.Ping">
+            <summary>
+            The ping.
+            </summary>
+            <returns>The pong.</returns>
+            <response code="200">Successful ping.</response>
+        </member>
+        <member name="M:HolterAnalyzeRest.Controllers.HolterController.Analyze(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            The analyze method.
+            </summary>
+            <param name="file">The file. File size limit is 209715200.</param>
+            <returns></returns>
+            <response code="200">Successfuly analyzed.</response>
+            <response code="400">File is null or wrong file extension.</response>
+            <response code="500">Internal server error.</response>
+            <response code="502">Algorithm error. See <see cref="P:HolterAnalyzeRest.Server.AnalyzeResponse.ExceptionMessage"/> in response object.</response>
+        </member>
+        <member name="T:HolterAnalyzeRest.Program">
+            <summary>
+            The program.
+            </summary>
+        </member>
+        <member name="P:HolterAnalyzeRest.Program.Port">
+            <summary>
+            The port.
+            </summary>
+        </member>
+        <member name="P:HolterAnalyzeRest.Program.BasePath">
+            <summary>
+            The base path.
+            </summary>
+        </member>
+        <member name="M:HolterAnalyzeRest.Program.Main(System.String[])">
+            <summary>
+            The main method.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:HolterAnalyzeRest.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Creates the host builder.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>The host builder.</returns>
+        </member>
+        <member name="T:HolterAnalyzeRest.Server.AnalyzeResponse">
+            <summary>
+            The analyze response.
+            </summary>
+        </member>
+        <member name="P:HolterAnalyzeRest.Server.AnalyzeResponse.ExceptionMessage">
+            <summary>
+            The exception message.
+            </summary>
+        </member>
+        <member name="P:HolterAnalyzeRest.Server.AnalyzeResponse.Files">
+            <summary>
+            The files.
+            </summary>
+        </member>
+        <member name="P:HolterAnalyzeRest.Server.AnalyzeResponse.Values">
+            <summary>
+            The result values.
+            </summary>
+        </member>
+        <member name="T:HolterAnalyzeRest.Server.DataServer">
+            <summary>
+            The data server.
+            </summary>
+        </member>
+        <member name="M:HolterAnalyzeRest.Server.DataServer.#ctor(NLog.Logger,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Creates the data server.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="config">The config.</param>
+        </member>
+        <member name="M:HolterAnalyzeRest.Server.DataServer.UploadDataAsync(System.IO.MemoryStream)">
+            <summary>
+            Uploads the data async.
+            </summary>
+            <param name="stream">The file stream.</param>
+            <returns></returns>
+        </member>
+        <member name="T:HolterAnalyzeRest.Startup">
+            <summary>
+            The startup.
+            </summary>
+        </member>
+        <member name="M:HolterAnalyzeRest.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Creates new startup.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:HolterAnalyzeRest.Startup.Configuration">
+            <summary>
+            The configuration.
+            </summary>
+        </member>
+        <member name="M:HolterAnalyzeRest.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary> 
+        </member>
+        <member name="M:HolterAnalyzeRest.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+        </member>
+    </members>
+</doc>

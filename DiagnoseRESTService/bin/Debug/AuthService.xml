@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AuthService</name>
+    </assembly>
+    <members>
+        <member name="T:AuthService.ApiResponses.BaseAuthResponse">
+            <summary>
+            The base api response.
+            </summary>
+        </member>
+        <member name="P:AuthService.ApiResponses.BaseAuthResponse.UserId">
+            <summary>
+            The user id.
+            </summary>
+        </member>
+        <member name="P:AuthService.ApiResponses.BaseAuthResponse.UserName">
+            <summary>
+            The username.
+            </summary>
+        </member>
+        <member name="P:AuthService.ApiResponses.BaseAuthResponse.ResponseResult">
+            <summary>
+            The response result.
+            </summary>
+        </member>
+        <member name="T:AuthService.ApiResponses.LoginResponse">
+            <summary>
+            The response on login request.
+            </summary>
+        </member>
+        <member name="P:AuthService.ApiResponses.LoginResponse.Token">
+            <summary>
+            The generated token.
+            </summary>
+        </member>
+        <member name="P:AuthService.ApiResponses.LoginResponse.Roles">
+            <summary>
+            The roles.
+            </summary>
+        </member>
+        <member name="T:AuthService.ApiResponses.RegistrationResponse">
+            <summary>
+            The registration response.
+            </summary>
+        </member>
+        <member name="P:AuthService.ApiResponses.RegistrationResponse.Roles">
+            <summary>
+            The user's role.
+            </summary>
+        </member>
+        <member name="T:AuthService.ApiResponses.ResponseResults">
+            <summary>
+            The response results types.
+            </summary>
+        </member>
+        <member name="F:AuthService.ApiResponses.ResponseResults.OK">
+            <summary>
+            The OK result.
+            </summary>
+        </member>
+        <member name="F:AuthService.ApiResponses.ResponseResults.ERROR">
+            <summary>
+            The error result.
+            </summary>
+        </member>
+        <member name="F:AuthService.ApiResponses.ResponseResults.ERROR_USER_ALREADY_EXISTS">
+            <summary>
+            The error result if user already exists.
+            </summary>
+        </member>
+        <member name="T:AuthService.Controllers.AuthController">
+            <summary>
+            The auth controller.
+            </summary>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.#ctor(NLog.Logger,AuthService.Server.DataServer)">
+            <summary>
+            Initiates the auth controller.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="dataServer">The data server.</param>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.Ping">
+            <summary>
+            The Ping.
+            </summary>
+            <returns>Pong</returns>
+            <response code="200">Successful ping.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.PingAdapter">
+            <summary>
+            Pings the db adapter.
+            </summary>
+            <returns>The db adapter status.</returns>
+            <response code="200">Successful ping adapter..</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.Login(HeartDiseasesDiagnosticExtentions.AuthExtensions.LoginModel)">
+            <summary>
+            The login request.
+            </summary>
+            <param name="loginModel">The login model.</param>
+            <returns>The login response.</returns>
+            <response code="200">Successful login.</response>
+            <response code="401">Unsuccessful login.</response>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.Registration(HeartDiseasesDiagnosticExtentions.AuthExtensions.RegisterModel)">
+            <summary>
+            The registration request.
+            </summary>
+            <param name="model">The registration model.</param>
+            <response code="200">Successful registration.</response>
+            <response code="401">Unsuccessful registration.</response>
+            <response code="500">Internal server error.</response>
+            <returns></returns>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.DeleteUser(HeartDiseasesDiagnosticExtentions.AuthExtensions.DeleteModel)">
+            <summary>
+            Deletes the user.
+            </summary>
+            <param name="model">The delete user model.</param>
+            <returns>The base response.</returns>
+            <response code="200">Successfuly deleted.</response>
+            <response code="404">User is not exists.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.ChangeUserRoles(HeartDiseasesDiagnosticExtentions.AuthExtensions.UpdateRolesModel)">
+            <summary>
+            Changes user role.
+            </summary>
+            <param name="model">The update user role model.</param>
+            <returns>The base response.</returns>
+            <response code="200">Successfuly changed.</response>
+            <response code="401">Wrong requestor role.</response>
+            <response code="404">User is not exists.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:AuthService.Controllers.AuthController.GetUserId(System.String)">
+            <summary>
+            Gets the user id.
+            </summary>
+            <param name="userName">The user name.</param>
+            <returns>The user id.</returns>
+            <response code="200">Successfuly executed.</response>
+            <response code="400">Bad request.</response>
+            <response code="404">User name not found.</response>
+            <response code="500">Something went wrong...</response>
+        </member>
+        <member name="T:AuthService.Exceptions.AuthRestException">
+            <summary>
+            Исключения для auth-rest-service.
+            </summary>
+        </member>
+        <member name="P:AuthService.Exceptions.AuthRestException.Result">
+            <summary>
+            The users response result.
+            </summary>
+        </member>
+        <member name="M:AuthService.Exceptions.AuthRestException.#ctor(AuthService.ApiResponses.UsersResponseResult)">
+            <summary>
+            Calls exception with users response result.
+            </summary>
+            <param name="result">The user response result.</param>
+        </member>
+        <member name="M:AuthService.Exceptions.AuthRestException.#ctor(AuthService.ApiResponses.UsersResponseResult,System.String)">
+            <summary>
+            Calls exception with users response result and message.
+            </summary>
+            <param name="result">The user response result.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="T:AuthService.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AuthService.Program.Port">
+            <summary>
+            The port.
+            </summary>
+        </member>
+        <member name="P:AuthService.Program.BasePath">
+            <summary>
+            The base path.
+            </summary>
+        </member>
+        <member name="P:AuthService.Program.SecretKey">
+            <summary>
+            Gets the secret key bytes.
+            </summary>
+        </member>
+        <member name="P:AuthService.Program.CacheAdapter">
+            <summary>
+            The cache adapter.
+            </summary>
+        </member>
+        <member name="M:AuthService.Program.Main(System.String[])">
+            <summary>
+            The main.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:AuthService.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Creates the host builder.
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AuthService.Server.DataServer">
+            <summary>
+            The data server.
+            </summary>
+        </member>
+        <member name="P:AuthService.Server.DataServer.RpcClient">
+            <summary>
+            The rabbitMQ rpc client.
+            </summary>
+        </member>
+        <member name="P:AuthService.Server.DataServer.RolesList">
+            <summary>
+            The roles list.
+            </summary>
+        </member>
+        <member name="M:AuthService.Server.DataServer.#ctor(NLog.Logger,Microsoft.Extensions.Configuration.IConfiguration,EBCEYS.RabbitMQ.Client.RabbitMQClient,UsersCache.IUsersCacheAdapter)">
+            <summary>
+            Creates the data server.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="config">The configuration.</param>
+            <param name="client">The rabbit mq client.</param>
+            <param name="usersCache">The users cache.</param>
+        </member>
+        <member name="M:AuthService.Server.DataServer.LoginAsync(HeartDiseasesDiagnosticExtentions.AuthExtensions.LoginModel)">
+            <summary>
+            Sends login request to users database adapter.
+            </summary>
+            <param name="login">The login model.</param>
+            <returns>The login response.</returns>
+        </member>
+        <member name="M:AuthService.Server.DataServer.RegisterAsync(HeartDiseasesDiagnosticExtentions.AuthExtensions.RegisterModel)">
+            <summary>
+            The register rpc request.
+            </summary>
+            <param name="model">The registration model.</param>
+            <returns>The registration response.</returns>
+        </member>
+        <member name="M:AuthService.Server.DataServer.PingAsync">
+            <summary>
+            Pings the users db adapter service.
+            </summary>
+            <returns>The ping result as string.</returns>
+        </member>
+        <member name="M:AuthService.Server.DataServer.DeleteUserAsync(HeartDiseasesDiagnosticExtentions.AuthExtensions.DeleteModel)">
+            <summary>
+            Deletes the user.
+            </summary>
+            <param name="model">The delete user model.</param>
+            <returns>The base response.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AuthService.Server.DataServer.UpdateRolesAsync(HeartDiseasesDiagnosticExtentions.AuthExtensions.UpdateRolesModel)">
+            <summary>
+            Updates the user roles.
+            </summary>
+            <param name="model">The update user role model.</param>
+            <returns>The base response.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AuthService.Server.DataServer.GetUserIdAsync(System.String)">
+            <summary>
+            Gets the user id async.
+            </summary>
+            <param name="userName">The get userid model.</param>
+            <returns>Base auth response.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:HeartDiseasesDiagnosticExtentions.RabbitMQExtensions.RabbitMQException"></exception>
+        </member>
+        <member name="T:AuthService.Startup">
+            <summary>
+            The startup.
+            </summary>
+        </member>
+        <member name="M:AuthService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:AuthService.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuthService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configurates the services.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AuthService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configurates app.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:AuthService.SimpleHealthCheck">
+            <summary>
+            The simple health check.
+            </summary>
+        </member>
+        <member name="M:AuthService.SimpleHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <summary>
+            Checks that service is alive!
+            </summary>
+            <param name="context"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

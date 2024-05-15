@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DiagnoseRESTService</name>
+    </assembly>
+    <members>
+        <member name="T:DiagnoseRestService.Controllers.HeartDiseaseController">
+            <summary>
+            The heart disease controller.
+            </summary>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.#ctor(NLog.Logger,DiagnoseRestService.Server.DataServer,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            The heart desease controller constructor.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="dataServer">The data server.</param>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.Diagnose(HeartDiseasesDiagnosticExtentions.DataSetsClasses.DataSetTypes,System.Text.Json.JsonDocument,System.String)">
+            <summary>
+            The main method. Uses to diagnose data by definite algorithm.
+            </summary>
+            <param name="algorithm">The AI algorithm.</param>
+            <param name="dataSetType">The data set type.</param>
+            <param name="data">The values set by dataset example.</param>
+            <param name="requestId">The request id.</param>
+            <returns>The action response.</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.Ping">
+            <summary>
+            The ping.
+            </summary>
+            <returns>Pong</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.GetHeartFailurePredictionExample">
+            <summary>
+            Gets Heart Failure Prediction data set example.
+            </summary>
+            <returns>The Heart Failure Prediction data set example.</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.GetCardiovascularDiseaseExample">
+            <summary>
+            Gets Cardiovascular Disease data set example.
+            </summary>
+            <returns>The Cardiovascular Disease data set example.</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.GetMaleCardiovascularDiseaseExample">
+            <summary>
+            Gets Male Cardiovascular Disease data set example.
+            </summary>
+            <returns>The Male Cardiovascular Disease data set example.</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.WriteLine(System.String,System.String,System.Text.Json.JsonDocument)">
+            <summary>
+            Writes client data set line to data base.
+            </summary>
+            <returns>TActionResponse</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.WriteLines(System.String,System.String,System.Collections.Generic.List{System.Text.Json.JsonDocument})">
+            <summary>
+            Writes client data set lines to data base.
+            </summary>
+            <returns>ActionResponse</returns>
+        </member>
+        <member name="M:DiagnoseRestService.Controllers.HeartDiseaseController.GetDiagnoseResults(System.String,System.Boolean)">
+            <summary>
+            Gets the diagnose results from queue.
+            </summary>
+            <param name="sessionId">The session id.</param>
+            <param name="refresh">true: wait until service get your diagnose results (max wait time is 30 sec); false - gets cached diagnose results.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DiagnoseRestService.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DiagnoseRestService.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:DiagnoseRestService.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DiagnoseRestService.Server.DataServer">
+            <summary>
+            The data server.
+            </summary>
+        </member>
+        <member name="M:DiagnoseRestService.Server.DataServer.#ctor(NLog.Logger,Microsoft.Extensions.Configuration.IConfiguration,EBCEYS.RabbitMQ.Client.RabbitMQClient,EBCEYS.RabbitMQ.Client.RabbitMQClient,UsersCache.DiagnoseCache.IDiagnoseCacheAdapter)">
+            <summary>
+            The data server constructor.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="config">The configuration.</param>
+        </member>
+        <member name="T:DiagnoseRestService.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DiagnoseRestService.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:DiagnoseRestService.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DiagnoseRestService.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:DiagnoseRestService.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="P:DiagnoseRESTService.Models.DiagnoseResultRESTService.SessionId">
+            <summary>
+            The session id.
+            </summary>
+        </member>
+        <member name="P:DiagnoseRESTService.Models.DiagnoseResultRESTService.ResultValue">
+            <summary>
+            The diagnose result value.
+            </summary>
+        </member>
+        <member name="P:DiagnoseRESTService.Models.DiagnoseResultRESTService.Result">
+            <summary>
+            The diagnose result.
+            </summary>
+        </member>
+        <member name="P:DiagnoseRESTService.Models.DiagnoseResultRESTService.DataType">
+            <summary>
+            The data type.
+            </summary>
+        </member>
+        <member name="P:DiagnoseRESTService.Models.DiagnoseResultRESTService.UserId">
+            <summary>
+            The user id.
+            </summary>
+        </member>
+        <member name="P:DiagnoseRESTService.Models.DiagnoseResultRESTService.DiagnoseData">
+            <summary>
+            The diagnose data.
+            </summary>
+        </member>
+    </members>
+</doc>

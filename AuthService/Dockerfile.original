@@ -1,0 +1,25 @@
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl --fail http://localhost:5000/isAlive || exit
+EXPOSE 5000
+ENV DOTNET_URLS=http://+:5000
+ENV ASPNETCORE_URLS=http://+:5000
+
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["AuthService/AuthService.csproj", "AuthService/"]
+COPY ["Properties/HeartDiseasesDiagnosticExtentions/HeartDiseasesDiagnosticExtentions.csproj", "Properties/HeartDiseasesDiagnosticExtentions/"]
+RUN dotnet restore "AuthService/AuthService.csproj"
+COPY . .
+WORKDIR "/src/AuthService"
+RUN dotnet build "AuthService.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "AuthService.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "AuthService.dll"]

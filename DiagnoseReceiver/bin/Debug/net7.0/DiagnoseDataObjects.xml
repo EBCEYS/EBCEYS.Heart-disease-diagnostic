@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DiagnoseDataObjects</name>
+    </assembly>
+    <members>
+        <member name="T:DiagnoseDataObjects.DiagnoseResult">
+            <summary>
+            The diagnose result.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.DiagnoseResult.SessionId">
+            <summary>
+            The session id.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.DiagnoseResult.ResultValue">
+            <summary>
+            The diagnose result value.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.DiagnoseResult.Result">
+            <summary>
+            The diagnose result.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.DiagnoseResult.DataType">
+            <summary>
+            The data type.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.DiagnoseResult.UserId">
+            <summary>
+            The user id.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.DiagnoseResult.DiagnoseData">
+            <summary>
+            The diagnose data.
+            </summary>
+        </member>
+        <member name="T:DiagnoseDataObjects.InputWetData">
+            <summary>
+            Data to diagnose.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.InputWetData.DataType">
+            <summary>
+            The data type.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.InputWetData.SessionId">
+            <summary>
+            The session id.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.InputWetData.DataToDiagnose">
+            <summary>
+            The data to diagnose.
+            </summary>
+        </member>
+        <member name="T:DiagnoseDataObjects.PrepairedWetData">
+            <summary>
+            The prepaired data to post it in queue.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.PrepairedWetData.InputData">
+            <summary>
+            The input data.
+            </summary>
+        </member>
+        <member name="P:DiagnoseDataObjects.PrepairedWetData.UserId">
+            <summary>
+            The user id.
+            </summary>
+        </member>
+    </members>
+</doc>

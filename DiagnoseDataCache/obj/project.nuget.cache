@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "ISY2DXX1uIUE7DEcPQ/7GvW/+2HI8qd5az0FeA7FwGuxNlphRns9VETMHTS9nrjmz3WKYdiuvyoaakeddPg6vA==",
+  "success": true,
+  "projectFilePath": "F:\\Project\\HDDSystem\\DiagnoseDataCache\\DiagnoseDataCache.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Алексей\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+    "C:\\Users\\Алексей\\.nuget\\packages\\stackexchange.redis\\2.6.104\\stackexchange.redis.2.6.104.nupkg.sha512",
+    "C:\\Users\\Алексей\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
